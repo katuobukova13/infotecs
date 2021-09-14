@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  margin: 10px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.table {
+  display: block;
+  width: calc(50% - 10px);
+  height: 50vh;
+  border-spacing: 0;
+  overflow: scroll;
+  border-collapse: collapse;
+  border: 1px solid black;
+  table-layout: fixed;
+}
+
+th {
+  width: calc(100% / 4);
+  border: 1px solid black;
+  padding: 10px;
+  cursor: pointer;
+}
+
+td {
+  padding: 0 10px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.table__about-trim {
+  margin: 0;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form--hidden {
+  display: none;
+}
+
+.checked {
+  background: grey;
+}
+
+.th-asc::after {
+  content: " \25B2";
+}
+
+.th-desc::after {
+  content: " \25BC";
+}
+
+.container {
+  width: calc(50% - 10px);
+  height: 50vh;
+  border: 1px solid black;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+input,
+textarea {
+  width: 100%;
+  clear: both;
+  margin: 10px auto;
+}
+
+textarea {
+  height: 60px;
+}
+.field {
+  clear: both;
+}
+
+button {
+  display: block;
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 5px;
+  border: inherit;
+  background-color: thistle;
+}
+button:hover {
+  cursor: pointer;
+  background-color: gainsboro;
+}
