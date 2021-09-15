@@ -1,4 +1,5 @@
 "use strict";
+//import { users } from "./fetchData.js";
 
 function sortTable(column, table, asc = true) {
   const tBody = table.tBodies[0];
@@ -36,8 +37,8 @@ function sortTable(column, table, asc = true) {
 
 function createContainerForForm() {
   let containerForm = document.createElement("div");
-  containerForm.classList.add("container");
-  document.body.appendChild(containerForm);
+  containerForm.classList.add("form--container");
+  document.querySelector(".container").appendChild(containerForm);
 }
 
 function displayForm() {
@@ -55,10 +56,10 @@ function displayForm() {
   <label> Цвет глаз: <input type="text" name="eyeColor" value=""> </label>
   </div>
   <div class="field">
-  <button> Изменить </button>
+  <button class="button"> Изменить </button>
 </div>
 `;
-  let containerForm = document.querySelector(".container");
+  let containerForm = document.querySelector(".form--container");
   containerForm.appendChild(changeForm);
   changeForm.classList.add("form--hidden");
 
@@ -85,12 +86,12 @@ function editInfo() {
     changeInfoForm.querySelector('input[name="eyeColor"]').value;
 }
 
-export function filledTable(answer) {
+export function filledTable() {
+  let tableContainer = document.querySelector(".table--container");
+
   let table = document.createElement("table");
   table.className = "table";
-  document.body.appendChild(table);
-
-  console.group(answer);
+  tableContainer.appendChild(table);
 
   let tableHeader = document.createElement("thead");
   tableHeader.innerHTML = `<tr class="table__titles">
@@ -106,18 +107,6 @@ export function filledTable(answer) {
   </tbody>`;
   table.appendChild(tableBody);
 
-  answer.map((user) => {
-    let userInfo = document.createElement("tr");
-    userInfo.innerHTML = `<td>${user.name.firstName}</td>
-    <td>${user.name.lastName}</td>
-    <td class="table__about-trim">${user.about}</td>
-    <td>${user.eyeColor}</td>`;
-    tableBody.appendChild(userInfo);
-  });
-
-  createContainerForForm();
-  displayForm();
-
   document.querySelectorAll("table th").forEach((th) =>
     th.addEventListener("click", (event) => {
       const tElement = th.parentElement.parentElement.parentElement;
@@ -131,34 +120,6 @@ export function filledTable(answer) {
     })
   );
 
-  let selectedTd = null;
-
-  function displayUserInfo(row) {
-    let forma = document.getElementsByTagName("form")[0];
-
-    if (selectedTd) {
-      selectedTd.classList.remove("checked");
-      forma.classList.toggle("form--hidden");
-    }
-
-    selectedTd = row;
-    selectedTd.classList.add("checked");
-
-    forma.querySelector('input[name="firstName"]').value =
-      row.childNodes[0].innerText;
-    forma.querySelector('input[name="lastName"]').value =
-      row.childNodes[2].innerText;
-    forma.querySelector('textarea[name="about"]').value =
-      row.childNodes[4].innerText;
-    forma.querySelector('input[name="eyeColor"]').value =
-      row.childNodes[6].innerText;
-    forma.classList.remove("form--hidden");
-    forma.classList.add("form");
-  }
-
-  document.querySelectorAll("tbody tr").forEach((tr) =>
-    tr.addEventListener("click", (event) => {
-      displayUserInfo(event.currentTarget);
-    })
-  );
+  createContainerForForm();
+  displayForm();
 }

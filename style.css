@@ -1,3 +1,8 @@
+:root {
+  --main-color: thistle;
+  --active-color: cadetblue;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,20 +10,19 @@
 }
 
 body {
-  display: flex;
-  margin: 10px;
   -webkit-tap-highlight-color: transparent;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
 .table {
-  display: block;
-  width: calc(50% - 10px);
-  height: 50vh;
+  width: 100%;
   border-spacing: 0;
-  overflow: scroll;
-  border-collapse: collapse;
   border: 1px solid black;
-  table-layout: fixed;
 }
 
 th {
@@ -29,6 +33,7 @@ th {
 }
 
 td {
+  line-height: 24px;
   padding: 0 10px;
   text-align: center;
   border: 1px solid black;
@@ -52,7 +57,7 @@ td {
 }
 
 .checked {
-  background: grey;
+  background-color: var(--main-color);
 }
 
 .th-asc::after {
@@ -63,10 +68,14 @@ td {
   content: " \25BC";
 }
 
-.container {
-  width: calc(50% - 10px);
-  height: 50vh;
-  border: 1px solid black;
+.table--container {
+  width: 50%;
+}
+
+.form--container {
+  width: 50%;
+  height: 542px;
+  border: 2px solid black;
   margin-left: 10px;
   display: flex;
   align-items: center;
@@ -84,19 +93,41 @@ textarea {
 textarea {
   height: 60px;
 }
+
 .field {
   clear: both;
 }
 
-button {
+.button {
   display: block;
   box-sizing: border-box;
   padding: 5px;
   border-radius: 5px;
   border: inherit;
-  background-color: thistle;
+  background-color: var(--main-color);
 }
-button:hover {
+
+.button:hover {
   cursor: pointer;
-  background-color: gainsboro;
+  background-color: var(--active-color);
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-pagination {
+  width: 40px;
+  height: 40px;
+  border: none;
+  margin: 20px 5px;
+  background-color: var(--main-color);
+  cursor: pointer;
+}
+
+.active {
+  background-color: var(--active-color);
 }
