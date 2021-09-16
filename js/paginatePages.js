@@ -27,7 +27,11 @@ export function paginationI() {
       userInfo.innerHTML = `<td>${user[1][1].firstName}</td>
       <td>${user[1][1].lastName}</td>
       <td class="table__about-trim">${user[3][1]}</td>
-      <td>${user[4][1]}</td>`;
+      <td class="table__eyeColor-color">${user[4][1]}</td>`;
+
+      userInfo
+        .querySelector(".table__eyeColor-color")
+        .style.setProperty("--bg-color", `${user[4][1]}`);
 
       userInfo.addEventListener("click", (event) => {
         displayUserInfo(event.currentTarget);
@@ -96,10 +100,4 @@ export function paginationI() {
     forma.classList.remove("form--hidden");
     forma.classList.add("form");
   }
-
-  /* document.querySelectorAll("tbody tr").forEach((tr) =>
-    tr.addEventListener("click", (event) => {
-      displayUserInfo(event.currentTarget);
-    })
-  ); */
 }

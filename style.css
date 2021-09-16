@@ -1,6 +1,7 @@
 :root {
   --main-color: thistle;
   --active-color: cadetblue;
+  --bg-color: transparent;
 }
 
 * {
@@ -11,6 +12,11 @@
 
 body {
   -webkit-tap-highlight-color: transparent;
+}
+
+.table__eyeColor-color {
+  background-color: var(--bg-color);
+  color: transparent;
 }
 
 .container {
