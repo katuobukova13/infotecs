@@ -1,5 +1,6 @@
 "use strict";
 import { users } from "./fetchData.js";
+import { displayColumn } from "./displayColumn.js";
 
 export function paginationI() {
   let pagination = document.createElement("div");
@@ -9,7 +10,8 @@ export function paginationI() {
   let currentPage = 1;
   let rows = 10;
 
-  console.log(users);
+  let a = [];
+  const th = document.querySelectorAll("thead th");
 
   function paginateUsers(users, wrapper, rowsPerPage, page) {
     wrapper.innerHTML = null;
@@ -36,6 +38,8 @@ export function paginationI() {
       userInfo.addEventListener("click", (event) => {
         displayUserInfo(event.currentTarget);
       });
+
+      a.push(userInfo);
 
       wrapper.appendChild(userInfo);
     }
@@ -75,6 +79,8 @@ export function paginationI() {
 
   paginateUsers(users, document.querySelector("tbody"), rows, currentPage);
   setupPagination(users, pagination, rows);
+
+  displayColumn(th, a);
 
   let selectedTd = null;
 

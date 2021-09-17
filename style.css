@@ -14,9 +14,24 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+.hide-column {
+  display: none !important;
+}
+
 .table__eyeColor-color {
   background-color: var(--bg-color);
   color: transparent;
+  opacity: 0.88;
+}
+
+.table--show {
+  display: flex;
+}
+
+.table__showcolumn {
+  display: inline-block;
+  text-align: center;
+  width: calc(100% / 4);
 }
 
 .container {
@@ -87,6 +102,7 @@ td {
   align-items: center;
   justify-content: center;
   padding: 0;
+  margin-top: 51px;
 }
 
 input,

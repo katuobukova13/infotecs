@@ -1,6 +1,6 @@
 "use strict";
-//import { users } from "./fetchData.js";
 
+//сортировка столбцов таблицы
 function sortTable(column, table, asc = true) {
   const tBody = table.tBodies[0];
   const rows = Array.from(tBody.querySelectorAll("tr"));
@@ -35,12 +35,14 @@ function sortTable(column, table, asc = true) {
     .classList.toggle("th-desc", !asc);
 }
 
+//создание контейнера-дива для формы
 function createContainerForForm() {
   let containerForm = document.createElement("div");
   containerForm.classList.add("form--container");
   document.querySelector(".container").appendChild(containerForm);
 }
 
+//создание скрытой формы для ее отображения по первому клику на одну из строк таблицы
 function displayForm() {
   let changeForm = document.createElement("form");
   changeForm.innerHTML = `<div class="field">
@@ -71,11 +73,11 @@ function displayForm() {
   });
 }
 
+//запись информации выбранного столбца таблице, которое было изменено в форме
 function editInfo() {
   const user = document.querySelector(".checked");
   let changeInfoForm = document.getElementsByTagName("form")[0];
 
-  console.log(user);
   user.querySelector(`td:nth-child(1)`).innerText =
     changeInfoForm.querySelector('input[name="firstName"]').value;
   user.querySelector(`td:nth-child(2)`).innerText =
@@ -89,25 +91,42 @@ function editInfo() {
 export function filledTable() {
   let tableContainer = document.querySelector(".table--container");
 
+  //создание таблицы
   let table = document.createElement("table");
   table.className = "table";
   tableContainer.appendChild(table);
 
+  //создание полей заголовков таблицы
   let tableHeader = document.createElement("thead");
   tableHeader.innerHTML = `<tr class="table__titles">
-  <th class="table__firstName" id="0">Имя</th>
-  <th class="table__lastName" id="1">Фамилия</th>
-  <th class="table__about" id="2">Описание</th>
-  <th class="table__eyeColor" id="3">Цвет глаз</th>
+  <th class="table__firstName">Имя</th>
+  <th class="table__lastName">Фамилия</th>
+  <th class="table__about">Описание</th>
+  <th class="table__eyeColor">Цвет глаз</th>
   </tr>`;
   table.appendChild(tableHeader);
 
+  //создание чекбоксов для колонок по их названиям
+  for (let i = 0; i < document.querySelectorAll("thead th").length; i++) {
+    let tableShowColumns = document.createElement("div");
+    tableShowColumns.className = "table__showcolumn";
+    tableShowColumns.innerHTML = `<label>${
+      document.querySelectorAll("thead th")[i].innerText
+    }<input type="checkbox" id=${i} name="${
+      document.querySelectorAll("thead th")[i].innerText
+    }"checked></label>`;
+
+    tableContainer.insertBefore(tableShowColumns, table);
+  }
+
+  //создание тела таблицы
   let tableBody = document.createElement("tbody");
   tableBody.innerHTML = `<tbody class="table__titles">
   </tbody>`;
   table.appendChild(tableBody);
 
-  document.querySelectorAll("table th").forEach((th) =>
+  //вешаем на клик по заголовкам таблицы событие сортировки колонки
+  document.querySelectorAll("thead th").forEach((th) =>
     th.addEventListener("click", (event) => {
       const tElement = th.parentElement.parentElement.parentElement;
       const headerIndex = Array.prototype.indexOf.call(
@@ -120,6 +139,9 @@ export function filledTable() {
     })
   );
 
+  //создание пустого дива для формы
   createContainerForForm();
+
+  //отображение формы
   displayForm();
 }
