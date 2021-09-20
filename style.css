@@ -18,20 +18,10 @@ body {
   display: none !important;
 }
 
-.table__eyeColor-color {
+.table__eyeColor--color {
   background-color: var(--bg-color);
   color: transparent;
   opacity: 0.88;
-}
-
-.table--show {
-  display: flex;
-}
-
-.table__showcolumn {
-  display: inline-block;
-  text-align: center;
-  width: calc(100% / 4);
 }
 
 .container {
@@ -40,7 +30,7 @@ body {
   margin: 10px;
 }
 
-.table {
+.table__table {
   width: 100%;
   border-spacing: 0;
   border: 1px solid black;
@@ -51,6 +41,7 @@ th {
   border: 1px solid black;
   padding: 10px;
   cursor: pointer;
+  font-size: 14px;
 }
 
 td {
@@ -60,7 +51,7 @@ td {
   border: 1px solid black;
 }
 
-.table__about-trim {
+.table__about--trim {
   margin: 0;
   -webkit-line-clamp: 2;
   display: -webkit-box;
@@ -68,12 +59,12 @@ td {
   overflow: hidden;
 }
 
-.form {
+.form__form {
   display: flex;
   flex-direction: column;
 }
 
-.form--hidden {
+.form__form--hidden {
   display: none;
 }
 
@@ -81,19 +72,19 @@ td {
   background-color: var(--main-color);
 }
 
-.th-asc::after {
+.table__title--asc::after {
   content: " \25B2";
 }
 
-.th-desc::after {
+.table__title--desc::after {
   content: " \25BC";
 }
 
-.table--container {
+.table {
   width: 50%;
 }
 
-.form--container {
+.form {
   width: 50%;
   height: 542px;
   border: 2px solid black;
@@ -102,7 +93,6 @@ td {
   align-items: center;
   justify-content: center;
   padding: 0;
-  margin-top: 51px;
 }
 
 input,
@@ -116,11 +106,7 @@ textarea {
   height: 60px;
 }
 
-.field {
-  clear: both;
-}
-
-.button {
+.form__button {
   display: block;
   box-sizing: border-box;
   padding: 5px;
@@ -129,7 +115,7 @@ textarea {
   background-color: var(--main-color);
 }
 
-.button:hover {
+.form__button:hover {
   cursor: pointer;
   background-color: var(--active-color);
 }
@@ -141,7 +127,7 @@ textarea {
   align-items: center;
 }
 
-.button-pagination {
+.pagination__button {
   width: 40px;
   height: 40px;
   border: none;
@@ -150,6 +136,6 @@ textarea {
   cursor: pointer;
 }
 
-.active {
+.pagination__button--active {
   background-color: var(--active-color);
 }
